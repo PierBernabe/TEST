@@ -1,0 +1,58 @@
+THEORY ProofList IS
+_f(1) & _f(2) & _f(14) & _f(21) & traiter.5,(_f(22) & _f(23) & _f(3) & _f(12) => _f(28));
+_f(1) & _f(2) & _f(14) & _f(21) & traiter.4,(_f(22) & _f(23) & _f(3) & _f(10) => _f(27));
+_f(1) & _f(2) & _f(14) & _f(21) & traiter.3,(_f(22) & _f(23) & _f(3) & _f(8) => _f(26));
+_f(1) & _f(2) & _f(14) & _f(21) & traiter.2,(_f(22) & _f(23) & _f(3) & _f(6) => _f(25));
+_f(1) & _f(2) & _f(14) & _f(21) & traiter.1,(_f(22) & _f(23) & _f(3) & _f(4) => _f(24));
+_f(1) & _f(2) & _f(14) & _f(15) & ajouter.5,(_f(3) & _f(12) => _f(20));
+_f(1) & _f(2) & _f(14) & _f(15) & ajouter.4,(_f(3) & _f(10) => _f(19));
+_f(1) & _f(2) & _f(14) & _f(15) & ajouter.3,(_f(3) & _f(8) => _f(18));
+_f(1) & _f(2) & _f(14) & _f(15) & ajouter.2,(_f(3) & _f(6) => _f(17));
+_f(1) & _f(2) & _f(14) & _f(15) & ajouter.1,(_f(3) & _f(4) => _f(16));
+_f(1) & _f(2) & Initialisation.5,(_f(3) & _f(12) => _f(13));
+_f(1) & _f(2) & Initialisation.4,(_f(3) & _f(10) => _f(11));
+_f(1) & _f(2) & Initialisation.3,(_f(3) & _f(8) => _f(9));
+_f(1) & _f(2) & Initialisation.2,(_f(3) & _f(6) => _f(7));
+_f(1) & _f(2) & Initialisation.1,(_f(3) & _f(4) => _f(5))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+VAL: FIN(INTEGER) & not(VAL = {}) & ((nb_max) : (((1) .. (2147483647))));
+"Invariant is preserved";
+"Check invariant attente : POW( VAL)";
+{} : POW( VAL);
+"Check invariant ((nb_elem) : (NAT))";
+((0) : (NAT));
+"Check invariant (nb_elem <= nb_max)";
+(0 <= nb_max);
+"Check invariant ((attente) : (FIN(attente)))";
+(({}) : (FIN({})));
+"Check invariant ((nb_elem) = (card(attente)))";
+((0) = (card({})));
+attente : POW( VAL) & ((nb_elem) : (NAT)) & (nb_elem <= nb_max) & ((attente) : (FIN(attente))) & ((nb_elem) = (card(attente)));
+((vv) : (VAL)) & not(vv : attente) & not(nb_elem = nb_max);
+((attente) \/ ({vv})) : POW( VAL);
+(((nb_elem + 1)) : (NAT));
+((nb_elem + 1) <= nb_max);
+((((attente) \/ ({vv}))) : (FIN(((attente) \/ ({vv})))));
+(((nb_elem + 1)) = (card(((attente) \/ ({vv})))));
+not(attente = {});
+((val) : (VAL));
+((val) : (attente));
+(attente - {val}) : POW( VAL);
+(((nb_elem - 1)) : (NAT));
+((nb_elem - 1) <= nb_max);
+(((attente - {val})) : (FIN((attente - {val}))));
+(((nb_elem - 1)) = (card((attente - {val}))));
+VAL: FIN(INTEGER) & not(VAL = {});
+((attente) : (FIN(attente)));
+(nb_elem <= nb_max);
+((nb_elem) : (NAT));
+attente : POW( VAL);
+not(vv : attente);
+((vv) : (VAL))
+END
+&
+THEORY EnumerateX
+END

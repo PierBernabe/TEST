@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<unistd.h>
+#include<signal.h>
+#include<sys/types.h>
+#include<sys/ipc.h>
+#include<sys/sem.h>
+
+void initsem(int idsem,int numsem,int val){
+	if((semctl(idsem,numsem,SET_VAL,0))==-1){ 
+		printf("Erreur\n");
+		return (-1);
+	}
+
+}
+void down(int idsem,int numsem){
+	struct sembuf op;
+	op.sem_num=numsem;
+	op.sem_op=-1;
+	if(semop(idsem,&opération,1)==-1){
+		printf("Erreur\n");return (-1);
+	}
+}
+void up(int idsem,int numsem){
+	struct sembuf op;
+	op.sem_num=numsem;
+	op.sem_op=1;
+	if(semop(idsem,&opération,1)==-1){
+		printf("Erreur\n");return (-1);
+	}
+}
+
+
+int main(){
+	int idsem;
+	int clients=0;int coiffeur=1;int mutex=2;	
+	if((idsem=semget(1/*clé valeur au choix*/,3,0666|IPC_CREAT))==-1){	//Création d'une famille de sémaphore
+		printf("Erreur\n");return (-1);
+	}
+
+	//Initialisation des 3 sémantiques
+	initsem(idsem,clients,0);
+	initsem(idsem,coiffeur,1);
+	initsem(idsem,mutex,1);
+		
+	while(true){
+		down(idsem,clients);
+		down(idsem,mutex);
+		attente--;
+		up(idsem,mutex);
+		couper-cheveux();
+	}
+}
+
+
+
+
+
+

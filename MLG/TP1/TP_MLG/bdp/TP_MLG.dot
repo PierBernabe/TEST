@@ -1,0 +1,8 @@
+digraph {
+ASCENSEUR [ label=" ASCENSEUR " shape= box ]
+ATTENTE_R1 [ label=" ATTENTE\nATTENTE_R1 " shape= box ]
+ECLUSE [ label=" ECLUSE " shape= box ]
+ExempleTD [ label=" ExempleTD " shape= box ]
+Genealogie [ label=" Genealogie " shape= box ]
+
+}

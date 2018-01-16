@@ -1,0 +1,9 @@
+$collection = 'config';
+$zCallback = function($rec) {
+  if ($rec.key == 'working_directory') {
+    print $rec.value;
+    return TRUE;
+  }
+  return FALSE;
+};
+$rows = db_fetch_all($collection, $zCallback); 

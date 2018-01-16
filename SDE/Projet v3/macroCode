@@ -1,0 +1,155 @@
+Utilisateur et Agence
+
+Utilisateur et Agence communique grâce à une boîte à lettre. Utilisateur déposer les commandes dans la boite à lettre et agence les récupère.
+Dans un premier temps, nous avons crée une BAL avec Agence. Ensuite, nous nous sommes assurés que quand Utilisateur déposait un message dans la boite à lettre Agence le detectait et était capable de l'afficher.
+Une fois cette première étape validé, nous avons pu commencer à transmettre une structure plus complexe contenant un char[17] pour la destination, un int pour le nombre de places et le PID. Le PID est primordiale pour être capable de répondre à l'utilisateur qui à envoyer le message. En effet, lors de la conception nous avons choisi que pour repondre à l'utilisateur, Agence envoie un SIGUSR1 ou un SIGUSR2 pour indiquer la réussite ou non de la commande.
+Pour tester cette partie, nous avons protéger Utilisateur de ces signaux. Puis envoyer successivement, à la suite d'un message reçu dans la BAL, un SIGUSR1 et un SIGUSR2.
+Une fois que cette dernière étape a été valide nous étions certains que Utilisateur et Agence était capable de communiquer correctement entre eux.
+
+Donc nous avons pu commencer d'integrer Agence aux autres processus (Ecrivain et Agence) qui utilisent la BDD.
+Tout d'abord, nous avons pu nous inspirer de la partie du code de affichage qui lisait et supprimait si besoin les destinations . 
+Dans agence, il a fallu rajouter une comparaison entre la destination reçu par la BAL et les destinations luent dans la BDD (affichage des deux chaines de caractères pour s'assurer de la bonne lecture).
+Et pour finaliser la communication entre tous les processus, nous avons intégré la modification du nombre de places.
+
+Avec cette dernière étape, tous les processus étaient capable de communiquer entre eux et répondre au cahier des charges.
+
+
+
+
+
+
+
+utilisateur
+	protectionSignal();// SIGINT / USR1 / USR2
+	int commande=1;
+	struct msgbuf{
+		long mtype;
+		char dest[17];
+		int nb_places;
+		int pid;
+	} message;
+	message.mtype=1;
+	message.pid=getpid();
+	ConnexionBAL();
+	TANT QUE (l'utilisateur souhaite faire des commandes)
+		Saisi de le destination dans message.dest
+		Saisi du nb places dans message.nb_places
+		SI Vérifie nb_places > 100 redemande nb_places
+		envoieBAL
+		pause();
+	FIN TANT QUE
+	arret();
+
+Agence
+	signal(SIGINT,extinction);
+	struct msgbuf{
+		long mtype;
+		char dest[17];
+		int nb_places;
+		int pid;
+	} message;
+	pchar=creationBAL();
+	mutex=open_semaphore();
+	connexionBDD();
+	TANT QUE 1
+		attend message type 1 dans la BAL
+		SI message.dest[0] == '0' ALORS	exctinction
+		affiche commande utilisateur
+		down(mutex)
+		valide=verificationCommande()
+		SI valide ALORS modification nbplace dans la BDD
+		reponseUtilisateur(valide,message.pid)
+	FIN TANT QUE
+
+Affichage
+
+	signal(SIGINT,extinction);
+	mutex=open_semaphore();
+	mutex2=open_semaphore();
+	pchar=connexionBDD();
+	TANT QUE 1
+		down(mutex);
+		if(pchar[0]=='%') arret();
+		lectureBDD();
+		up(mutex);
+		sleep(3);
+	FIN TANT QUE
+
+FONCTION lectureBDD()
+	POUR i de 0 -> 20
+		SI pchar[20*i + 18] && pchar[20*i + 19] ALORS
+			pchar[20*i] = 0;
+			up(mutex2)
+		SINON
+			SI pchar[20*i] != 0 ALORS
+				POUR j de 0 -> 18
+				 	affiche pchar[20*i + j]
+				FIN POUR
+				affiche nbplaces = pchar[20*i + 18] pchar[20*i + 19]				
+	FIN POUR
+
+TIRAGE
+	création tube ordinaire
+	fork()//Creation ecrivain
+	CODE PERE
+		fermeture tube lecture
+		ouverture fichier destination
+		nb_places = alea();
+		nb_dest = aleaDest();
+		write(dest################nb places) //normalisé à 21 caractères
+	FIN CODE PERE
+	CODE FILS
+		fermeture tube ecriture
+		mutex=creat_semaphore()
+		mutex2=creat_semaphore()
+		mutex=open_semaphore()
+		mutex2=open_semaphore()
+		creationBDD()		
+		pchar=attachementBDD()
+		TANT QUE 1
+			down(mutex2)
+			read(tube)//20 caractères
+			down(mutex)
+			SI pchar[0] == '%' ALORS
+				kill(getppid())
+				arret_ecrivain()
+			FIN SI
+			POUR i de 0 -> 20
+				SI pchar[20*i] == 0 ALORS //place dispo
+					ecriture destination
+				FIN SI
+			up(mutex)
+		FIN TANT QUE
+	FIN CODE FILS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

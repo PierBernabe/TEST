@@ -1,0 +1,205 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "node.h"
+#define couleur(param)printf("\033[%sm",param)
+#define POSITION_ORIGINE 500
+#define _USE_MATH_DEFINES
+
+FILE *fic_dest;
+
+/*--------------------------------------------------------         
+                CREATION D'UN NOEUD
+--------------------------------------------------------*/
+NODE *creerNODE(int type,int valeur,NODE *successeur,NODE *sous_prog){
+  NODE *x;
+
+  x=(NODE *)malloc(sizeof(NODE));
+
+  x->type=type;
+  x->val=valeur;
+
+  x->successeur=successeur;
+  x->sous_prog=sous_prog;
+
+  /*couleur("32");
+  printf("--------Création noeud---------\n");
+  couleur("0");
+  affichageComplet(x);*/
+
+  return (x);
+}
+/*--------------------------------------------------------         
+                AJOUT D'UN NOEUD A LA FIN
+--------------------------------------------------------*/
+void ajoutNODEfin(NODE *root,NODE *suivant){
+  NODE *x;
+  x=(NODE *)malloc(sizeof(NODE));
+  x=root;
+	
+  while(x->successeur!=NULL){
+    x=x->successeur;
+  }
+  x->successeur=suivant;
+}
+
+
+/*--------------------------------------------------------         
+               CALCULE NEW POSITION
+--------------------------------------------------------*/
+void calculeNewPosition(double position[2],double module,double argument){
+	position[0]+=module*cos((argument*M_PI/180));
+	position[1]+=module*sin((argument*M_PI/180));
+}
+
+/*--------------------------------------------------------         
+           AFFICHAGE LOGO / AFFICHAGE FORMAT SVG
+--------------------------------------------------------*/
+void affichage(NODE *root){
+	double position[2]={POSITION_ORIGINE,POSITION_ORIGINE};
+        printf("--------Affichage de LOGO---------\n");
+	afficherLOGO(root,0);
+
+	printf("\n--------Affichage format svg---------------------\n");
+        printf("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"200\" height=\"200\">\n<title>LOGO</title>\n<desc>Du LOGO.</desc>\n");
+  	afficheFormatSVG(root,position,0,1);
+        printf("</svg>");
+        printf("\n-------------------------------------------------\n");
+}
+
+/*--------------------------------------------------------         
+                AFFICHAGE D'UN LOGO
+--------------------------------------------------------*/
+void afficherLOGO(NODE *root,int i)
+{
+	  if (root==NULL) return;
+	  
+	  switch(root->type)
+	    {
+	    case  NODE_FORWARD:
+	      printf(" FORWARD %d ",root->val);
+	      break;
+	   case  NODE_LEFT:
+	      printf(" LEFT %d ",root->val);
+	      break;
+	   case  NODE_RIGHT:
+	      printf(" RIGHT %d ",root->val);
+	      break;
+	   case  NODE_REPEAT:
+	      printf(" REPEAT %d [",root->val);
+	      afficherLOGO(root->sous_prog,1);
+	      printf("]");
+	      break;
+	    default:
+	      printf(" ? ");
+	      break;
+	    }
+          if(i==0){printf("\n");}
+	  if (root->successeur!=0)
+	    {
+	      afficherLOGO(root->successeur,0);
+	    }
+}
+
+/*--------------------------------------------------------         
+                AFFICHE FORMAT SVG
+--------------------------------------------------------*/
+void afficheFormatSVG(NODE *root,double position[2],double angle,int repetition){
+	NODE *tmp;
+	int i;
+	for(i=0;i<repetition;i++){
+        tmp=root;
+		while(tmp!=NULL){
+
+		    switch(tmp->type)
+		    {
+		    case  NODE_FORWARD:
+			  printf("<line x1=\"%lf\" y1=\"%lf\" ",position[0],position[1]);
+		          calculeNewPosition(position,tmp->val,angle);
+		          printf("x2=\"%lf\" y2=\"%lf\" stroke=\"red\" /> \n",position[0],position[1]);
+		          break;
+		    case  NODE_LEFT:
+		          angle-=(double)(tmp->val);
+		          break;
+		    case  NODE_RIGHT:
+		      	  angle+=(double)(tmp->val);
+		      	  break;
+		    case  NODE_REPEAT:
+			  afficheFormatSVG(tmp->sous_prog,position,angle,tmp->val);
+		    	  break;
+	 	    }
+		    if(tmp->successeur!=NULL){
+		    	  tmp=tmp->successeur;
+		    }
+		    else break;
+		}	
+	}
+}
+/*--------------------------------------------------------         
+       CREATION FICHIER / ECRITURE EN-TETE ET PIED
+--------------------------------------------------------*/
+void generationFic(NODE *root){
+	
+        double position[2]={POSITION_ORIGINE,POSITION_ORIGINE};
+
+	if((fic_dest=fopen("Instruction.svg","w+")) != NULL){
+		fputs("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"1000\" height=\"1000\">\n<title>LOGO</title>\n<desc>Du LOGO.</desc>\n",fic_dest);
+		putsCommande(root,position,0,1);
+		fputs("</svg>",fic_dest);
+
+		fclose(fic_dest);
+	}
+	else{
+        	printf("Erreur lors de l'ouverture du fichier %s\n\n","Instruction.svg");
+    	}
+}
+
+/*--------------------------------------------------------         
+                ECRITURE DES COMMANDES DANS LE FIC
+--------------------------------------------------------*/
+void putsCommande(NODE *root,double position[2],double angle,int repetition){
+	NODE *tmp;
+	int i;
+
+	for(i=0;i<repetition;i++){
+        tmp=root;
+		while(tmp!=NULL){
+		    switch(tmp->type){
+		    case  NODE_FORWARD:
+			  fprintf(fic_dest,"<line x1=\"%lf\" y1=\"%lf\" ",position[0],position[1]);
+		          calculeNewPosition(position,tmp->val,angle);
+			  fprintf(fic_dest,"x2=\"%lf\" y2=\"%lf\" stroke=\"red\" /> \n",position[0],position[1]);
+		          break;
+		    case  NODE_LEFT:
+		          angle-=(double)(tmp->val);
+		          break;
+		    case  NODE_RIGHT:
+		      	  angle+=(double)(tmp->val);
+		      	  break;
+		    case  NODE_REPEAT:
+			  putsCommande(tmp->sous_prog,position,angle,tmp->val);
+		    	  break;
+	 	    }
+		    if(tmp->successeur!=NULL){
+		    	  tmp=tmp->successeur;
+		    }
+		    else break;
+		}	
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

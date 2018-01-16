@@ -1,0 +1,658 @@
+<Proof_Obligations>
+<Define name="B definitions">
+<Nary_Pred op="&amp;" translate="((NAT) = (((0) .. (2147483647)))) &amp; ((INT) = (((-2147483647) .. (2147483647))))">
+<Exp_Comparison op="=" translate="((NAT) = (((0) .. (2147483647))))">
+<Id value="NAT"/>
+<Binary_Exp op="..">
+<Integer_Literal value="0"/>
+<Id value="MAXINT"/>
+</Binary_Exp>
+</Exp_Comparison>
+<Exp_Comparison op="=" translate="((INT) = (((-2147483647) .. (2147483647))))">
+<Id value="INT"/>
+<Binary_Exp op="..">
+<Id value="MININT"/>
+<Id value="MAXINT"/>
+</Binary_Exp>
+</Exp_Comparison>
+</Nary_Pred>
+</Define>
+<Define name="ctx"/>
+<Define name="seext"/>
+<Define name="inv">
+<Nary_Pred op="&amp;" translate="attente : POW( VAL) &amp; ((nb_elem) : (NAT)) &amp; (nb_elem &lt;= nb_max) &amp; ((attente) : (FIN(attente))) &amp; ((nb_elem) = (card(attente)))">
+<Exp_Comparison op="&lt;:" initialTag="attente : POW( VAL)" translate="attente : POW( VAL)">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:1:1" typref="743251740" value="attente"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:1:2" typref="743251740" value="VAL"/>
+</Exp_Comparison>
+<Exp_Comparison op=":" initialTag="((nb_elem) : (NAT))" translate="((nb_elem) : (NAT))">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:2:1" typref="2701647786" value="nb_elem"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:2:2" typref="3603043417" value="NAT"/>
+</Exp_Comparison>
+<Exp_Comparison op="&lt;=" initialTag="(nb_elem &lt;= nb_max)" translate="(nb_elem &lt;= nb_max)">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:3:1" typref="2701647786" value="nb_elem"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:3:2" typref="2701647786" value="nb_max"/>
+</Exp_Comparison>
+<Exp_Comparison op=":" initialTag="((attente) : (FIN(attente)))" translate="((attente) : (FIN(attente)))">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:4:1" typref="743251740" value="attente"/>
+<Unary_Exp op="FIN" typref="1808173543">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:4:2:1" typref="743251740" value="attente"/>
+</Unary_Exp>
+</Exp_Comparison>
+<Exp_Comparison op="=" initialTag="((nb_elem) = (card(attente)))" translate="((nb_elem) = (card(attente)))">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:5:1" typref="2701647786" value="nb_elem"/>
+<Unary_Exp op="card" typref="2701647786">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:5:2:1" typref="743251740" value="attente"/>
+</Unary_Exp>
+</Exp_Comparison>
+</Nary_Pred>
+</Define>
+<Define name="ass"/>
+<Define name="lprp">
+<Set translate="VAL: FIN(INTEGER) &amp; not(VAL = {})">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:1:1:1" typref="743251740" value="VAL"/>
+</Set>
+<Exp_Comparison op=":" translate="((nb_max) : (((1) .. (2147483647))))">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:4:1:1" typref="2701647786" value="nb_max"/>
+<Binary_Exp op=".." typref="3603043417">
+<Integer_Literal tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:4:1:2:1" typref="2701647786" value="1"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:4:1:2:2" typref="2701647786" value="MAXINT"/>
+</Binary_Exp>
+</Exp_Comparison>
+</Define>
+<Define name="inprp"/>
+<Define name="inext"/>
+<Define name="cst"/>
+<Proof_Obligation>
+<Comment>Initialisation dans une machine abstraite</Comment>
+<Tag>Initialisation</Tag>
+<Tag>Invariant</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Local_Hyp num="1">
+<Nary_Pred op="&amp;"/>
+</Local_Hyp>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Ref_Hyp num="1"/>
+<Exp_Comparison op="&lt;:" initialTag="attente : POW( VAL)" goalTag="Invariant is preserved">
+<EmptySet tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:6:1:2:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:1:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:6:1:2:1:1" typref="743251740"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:1:2" typref="743251740" value="VAL"/>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Ref_Hyp num="1"/>
+<Exp_Comparison op=":" initialTag="((nb_elem) : (NAT))" goalTag="Invariant is preserved">
+<Integer_Literal tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:6:1:1:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:6:1:1:1:1" typref="2701647786" value="0"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:2:2" typref="3603043417" value="NAT"/>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Ref_Hyp num="1"/>
+<Exp_Comparison op="&lt;=" initialTag="(nb_elem &lt;= nb_max)" goalTag="Invariant is preserved">
+<Integer_Literal tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:6:1:1:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:3:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:6:1:1:1:1" typref="2701647786" value="0"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:3:2" typref="2701647786" value="nb_max"/>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Ref_Hyp num="1"/>
+<Exp_Comparison op=":" initialTag="((attente) : (FIN(attente)))" goalTag="Invariant is preserved">
+<EmptySet tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:6:1:2:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:4:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:6:1:2:1:1" typref="743251740"/>
+<Unary_Exp op="FIN" typref="1808173543">
+<EmptySet tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:6:1:2:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:4:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:6:1:2:1:1" typref="743251740"/>
+</Unary_Exp>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Ref_Hyp num="1"/>
+<Exp_Comparison op="=" initialTag="((nb_elem) = (card(attente)))" goalTag="Invariant is preserved">
+<Integer_Literal tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:6:1:1:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:5:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:6:1:1:1:1" typref="2701647786" value="0"/>
+<Unary_Exp op="card" typref="2701647786">
+<EmptySet tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:6:1:2:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:5:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:6:1:2:1:1" typref="743251740"/>
+</Unary_Exp>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations dans une machine abstraite</Comment>
+<Tag>nb_attente</Tag>
+<Tag>INVARIANT</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Hypothesis/>
+<Local_Hyp num="1">
+<Nary_Pred op="&amp;"/>
+</Local_Hyp>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations dans une machine abstraite</Comment>
+<Tag>ajouter</Tag>
+<Tag>INVARIANT</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Hypothesis>
+<Nary_Pred op="&amp;">
+<Exp_Comparison op=":">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:1:1" typref="3229032487" value="vv"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:1:2" typref="743251740" value="VAL"/>
+</Exp_Comparison>
+<Exp_Comparison op="/:">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:2:1" typref="3229032487" value="vv"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:2:2" typref="743251740" value="attente"/>
+</Exp_Comparison>
+<Exp_Comparison op="/=">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:3:1" typref="2701647786" value="nb_elem"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:3:2" typref="2701647786" value="nb_max"/>
+</Exp_Comparison>
+</Nary_Pred>
+</Hypothesis>
+<Local_Hyp num="1">
+<Nary_Pred op="&amp;"/>
+</Local_Hyp>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Ref_Hyp num="1"/>
+<Exp_Comparison op="&lt;:" initialTag="attente : POW( VAL)" goalTag="Invariant is preserved">
+<Binary_Exp op="\/" tag=",/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:1:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:1:1:1" typref="743251740">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:1:2:1:1" typref="743251740" value="attente" fixed="false"/>
+<Nary_Exp op="{" typref="743251740">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:1:2:1:2:1" typref="3229032487" value="vv"/>
+</Nary_Exp>
+</Binary_Exp>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:1:2" typref="743251740" value="VAL"/>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Ref_Hyp num="1"/>
+<Exp_Comparison op=":" initialTag="((nb_elem) : (NAT))" goalTag="Invariant is preserved">
+<Binary_Exp op="+" tag=",/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:2:1:1" typref="2701647786">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:2:2:1:1" typref="2701647786" value="nb_elem"/>
+<Integer_Literal tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:2:2:1:2" typref="2701647786" value="1"/>
+</Binary_Exp>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:2:2" typref="3603043417" value="NAT"/>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Ref_Hyp num="1"/>
+<Exp_Comparison op="&lt;=" initialTag="(nb_elem &lt;= nb_max)" goalTag="Invariant is preserved">
+<Binary_Exp op="+" tag=",/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:3:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:2:1:1" typref="2701647786">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:2:2:1:1" typref="2701647786" value="nb_elem"/>
+<Integer_Literal tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:2:2:1:2" typref="2701647786" value="1"/>
+</Binary_Exp>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:3:2" typref="2701647786" value="nb_max"/>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Ref_Hyp num="1"/>
+<Exp_Comparison op=":" initialTag="((attente) : (FIN(attente)))" goalTag="Invariant is preserved">
+<Binary_Exp op="\/" tag=",/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:4:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:1:1:1" typref="743251740">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:1:2:1:1" typref="743251740" value="attente" fixed="false"/>
+<Nary_Exp op="{" typref="743251740">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:1:2:1:2:1" typref="3229032487" value="vv"/>
+</Nary_Exp>
+</Binary_Exp>
+<Unary_Exp op="FIN" typref="1808173543">
+<Binary_Exp op="\/" tag=",/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:4:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:1:1:1" typref="743251740">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:1:2:1:1" typref="743251740" value="attente" fixed="false"/>
+<Nary_Exp op="{" typref="743251740">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:1:2:1:2:1" typref="3229032487" value="vv"/>
+</Nary_Exp>
+</Binary_Exp>
+</Unary_Exp>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Ref_Hyp num="1"/>
+<Exp_Comparison op="=" initialTag="((nb_elem) = (card(attente)))" goalTag="Invariant is preserved">
+<Binary_Exp op="+" tag=",/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:5:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:2:1:1" typref="2701647786">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:2:2:1:1" typref="2701647786" value="nb_elem"/>
+<Integer_Literal tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:2:2:1:2" typref="2701647786" value="1"/>
+</Binary_Exp>
+<Unary_Exp op="card" typref="2701647786">
+<Binary_Exp op="\/" tag=",/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:5:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:1:1:1" typref="743251740">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:1:2:1:1" typref="743251740" value="attente" fixed="false"/>
+<Nary_Exp op="{" typref="743251740">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:3:1:1:2:1:2:1" typref="3229032487" value="vv"/>
+</Nary_Exp>
+</Binary_Exp>
+</Unary_Exp>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations dans une machine abstraite</Comment>
+<Tag>traiter</Tag>
+<Tag>INVARIANT</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Hypothesis>
+<Exp_Comparison op="/=">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:2:1:1" typref="743251740" value="attente"/>
+<EmptySet tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:2:1:2" typref="743251740"/>
+</Exp_Comparison>
+</Hypothesis>
+<Local_Hyp num="1">
+<Nary_Pred op="&amp;"/>
+</Local_Hyp>
+<Local_Hyp num="2">
+<Nary_Pred op="&amp;">
+<Exp_Comparison op=":">
+<Id suffix="" tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:1:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:2:1:1:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:1:1" typref="3229032487" value="val"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:2:1:1:2" typref="743251740" value="VAL"/>
+</Exp_Comparison>
+<Exp_Comparison op=":">
+<Id suffix="" tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:1:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:2:1:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:1:1" typref="3229032487" value="val"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:2:1:2:2" typref="743251740" value="attente"/>
+</Exp_Comparison>
+</Nary_Pred>
+</Local_Hyp>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Nary_Pred op="&amp;">
+<Ref_Hyp num="2"/>
+<Ref_Hyp num="1"/>
+</Nary_Pred>
+<Exp_Comparison op="&lt;:" initialTag="attente : POW( VAL)" goalTag="Invariant is preserved">
+<Binary_Exp op="-" tag=",/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:1:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:2:1:1" typref="743251740">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:2:2:1:1" typref="743251740" value="attente" fixed="false"/>
+<Nary_Exp op="{" typref="743251740">
+<Id suffix="" tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:1:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:2:2:1:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:1:1" typref="3229032487" value="val"/>
+</Nary_Exp>
+</Binary_Exp>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:1:2" typref="743251740" value="VAL"/>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Nary_Pred op="&amp;">
+<Ref_Hyp num="2"/>
+<Ref_Hyp num="1"/>
+</Nary_Pred>
+<Exp_Comparison op=":" initialTag="((nb_elem) : (NAT))" goalTag="Invariant is preserved">
+<Binary_Exp op="-" tag=",/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:3:1:1" typref="2701647786">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:3:2:1:1" typref="2701647786" value="nb_elem"/>
+<Integer_Literal tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:3:2:1:2" typref="2701647786" value="1"/>
+</Binary_Exp>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:2:2" typref="3603043417" value="NAT"/>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Nary_Pred op="&amp;">
+<Ref_Hyp num="2"/>
+<Ref_Hyp num="1"/>
+</Nary_Pred>
+<Exp_Comparison op="&lt;=" initialTag="(nb_elem &lt;= nb_max)" goalTag="Invariant is preserved">
+<Binary_Exp op="-" tag=",/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:3:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:3:1:1" typref="2701647786">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:3:2:1:1" typref="2701647786" value="nb_elem"/>
+<Integer_Literal tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:3:2:1:2" typref="2701647786" value="1"/>
+</Binary_Exp>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:3:2" typref="2701647786" value="nb_max"/>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Nary_Pred op="&amp;">
+<Ref_Hyp num="2"/>
+<Ref_Hyp num="1"/>
+</Nary_Pred>
+<Exp_Comparison op=":" initialTag="((attente) : (FIN(attente)))" goalTag="Invariant is preserved">
+<Binary_Exp op="-" tag=",/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:4:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:2:1:1" typref="743251740">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:2:2:1:1" typref="743251740" value="attente" fixed="false"/>
+<Nary_Exp op="{" typref="743251740">
+<Id suffix="" tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:1:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:2:2:1:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:1:1" typref="3229032487" value="val"/>
+</Nary_Exp>
+</Binary_Exp>
+<Unary_Exp op="FIN" typref="1808173543">
+<Binary_Exp op="-" tag=",/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:4:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:2:1:1" typref="743251740">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:2:2:1:1" typref="743251740" value="attente" fixed="false"/>
+<Nary_Exp op="{" typref="743251740">
+<Id suffix="" tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:1:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:2:2:1:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:1:1" typref="3229032487" value="val"/>
+</Nary_Exp>
+</Binary_Exp>
+</Unary_Exp>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Nary_Pred op="&amp;">
+<Ref_Hyp num="2"/>
+<Ref_Hyp num="1"/>
+</Nary_Pred>
+<Exp_Comparison op="=" initialTag="((nb_elem) = (card(attente)))" goalTag="Invariant is preserved">
+<Binary_Exp op="-" tag=",/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:5:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:3:1:1" typref="2701647786">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:3:2:1:1" typref="2701647786" value="nb_elem"/>
+<Integer_Literal tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:3:2:1:2" typref="2701647786" value="1"/>
+</Binary_Exp>
+<Unary_Exp op="card" typref="2701647786">
+<Binary_Exp op="-" tag=",/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:5:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:2:1:1" typref="743251740">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:2:2:1:1" typref="743251740" value="attente" fixed="false"/>
+<Nary_Exp op="{" typref="743251740">
+<Id suffix="" tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:1:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:3:1:2:2:1:2:1,/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:1:1" typref="3229032487" value="val"/>
+</Nary_Exp>
+</Binary_Exp>
+</Unary_Exp>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>WellDefinednessConstraints</Tag>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>WellDefinednessProperties</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Hypothesis>
+<Set>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:1:1:1" typref="743251740" value="VAL"/>
+</Set>
+</Hypothesis>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>WellDefinednessInvariant</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Local_Hyp num="1">
+<Exp_Comparison op=":" initialTag="((attente) : (FIN(attente)))">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:4:1" typref="743251740" value="attente"/>
+<Unary_Exp op="FIN" typref="1808173543">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:4:2:1" typref="743251740" value="attente"/>
+</Unary_Exp>
+</Exp_Comparison>
+</Local_Hyp>
+<Local_Hyp num="2">
+<Exp_Comparison op="&lt;=" initialTag="(nb_elem &lt;= nb_max)">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:3:1" typref="2701647786" value="nb_elem"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:3:2" typref="2701647786" value="nb_max"/>
+</Exp_Comparison>
+</Local_Hyp>
+<Local_Hyp num="3">
+<Exp_Comparison op=":" initialTag="((nb_elem) : (NAT))">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:2:1" typref="2701647786" value="nb_elem"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:2:2" typref="3603043417" value="NAT"/>
+</Exp_Comparison>
+</Local_Hyp>
+<Local_Hyp num="4">
+<Exp_Comparison op="&lt;:" initialTag="attente : POW( VAL)">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:1:1" typref="743251740" value="attente"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:5:1:1:2" typref="743251740" value="VAL"/>
+</Exp_Comparison>
+</Local_Hyp>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>WellDefinednessAssertions</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>WellDefinednessInitialisation</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations dans une machine abstraite</Comment>
+<Tag>WellDefinedness_Precondition_nb_attente</Tag>
+<Tag>INVARIANT</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations dans une machine abstraite</Comment>
+<Tag>WellDefinedness_nb_attente</Tag>
+<Tag>INVARIANT</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Hypothesis/>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations dans une machine abstraite</Comment>
+<Tag>WellDefinedness_Precondition_ajouter</Tag>
+<Tag>INVARIANT</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Local_Hyp num="1">
+<Exp_Comparison op="/:">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:2:1" typref="3229032487" value="vv"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:2:2" typref="743251740" value="attente"/>
+</Exp_Comparison>
+</Local_Hyp>
+<Local_Hyp num="2">
+<Exp_Comparison op=":">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:1:1" typref="3229032487" value="vv"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:1:2" typref="743251740" value="VAL"/>
+</Exp_Comparison>
+</Local_Hyp>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations dans une machine abstraite</Comment>
+<Tag>WellDefinedness_ajouter</Tag>
+<Tag>INVARIANT</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Hypothesis>
+<Nary_Pred op="&amp;">
+<Exp_Comparison op=":">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:1:1" typref="3229032487" value="vv"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:1:2" typref="743251740" value="VAL"/>
+</Exp_Comparison>
+<Exp_Comparison op="/:">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:2:1" typref="3229032487" value="vv"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:2:2" typref="743251740" value="attente"/>
+</Exp_Comparison>
+<Exp_Comparison op="/=">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:3:1" typref="2701647786" value="nb_elem"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:2:2:1:3:2" typref="2701647786" value="nb_max"/>
+</Exp_Comparison>
+</Nary_Pred>
+</Hypothesis>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations dans une machine abstraite</Comment>
+<Tag>WellDefinedness_Precondition_traiter</Tag>
+<Tag>INVARIANT</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations dans une machine abstraite</Comment>
+<Tag>WellDefinedness_traiter</Tag>
+<Tag>INVARIANT</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Hypothesis>
+<Exp_Comparison op="/=">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:2:1:1" typref="743251740" value="attente"/>
+<EmptySet tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:2:1:2" typref="743251740"/>
+</Exp_Comparison>
+</Hypothesis>
+<Local_Hyp num="1">
+<Exp_Comparison op=":">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:2:1:1:1" typref="3229032487" value="val"/>
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:7:3:3:1:2:1:1:2" typref="743251740" value="VAL"/>
+</Exp_Comparison>
+</Local_Hyp>
+</Proof_Obligation>
+<TypeInfos>
+<Type id="743251740">
+<Unary_Exp op="POW">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:8:1:1:1" value="VAL"/>
+</Unary_Exp>
+</Type>
+<Type id="2701647786">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:8:2:1" value="INTEGER"/>
+</Type>
+<Type id="3603043417">
+<Unary_Exp op="POW">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:8:3:1:1" value="INTEGER"/>
+</Unary_Exp>
+</Type>
+<Type id="1808173543">
+<Unary_Exp op="POW">
+<Unary_Exp op="POW">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:8:4:1:1:1" value="VAL"/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+<Type id="3817003670">
+<Unary_Exp op="POW">
+<Generic_Type tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:8:5:1:1"/>
+</Unary_Exp>
+</Type>
+<Type id="3229032487">
+<Id tag="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/ATTENTE.bxml:1:8:6:1" value="VAL"/>
+</Type>
+</TypeInfos>
+</Proof_Obligations>

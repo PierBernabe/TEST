@@ -1,0 +1,266 @@
+<Machine name='ECLUSE' type='abstraction'>
+<Sets>
+<Set>
+<Id value='NIVEAU' typref='27338931'/>
+<Enumerated_Values>
+<Id value='haut' typref='3089750310'/>
+<Id value='bas' typref='3089750310'/>
+</Enumerated_Values>
+</Set>
+<Set>
+<Id value='PORTE' typref='438023039'/>
+<Enumerated_Values>
+<Id value='ouverte' typref='403894148'/>
+<Id value='fermee' typref='403894148'/>
+</Enumerated_Values>
+</Set>
+</Sets>
+<Abstract_Variables>
+<Id value='sas' typref='3089750310'/>
+<Id value='pav' typref='403894148'/>
+<Id value='pam' typref='403894148'/>
+</Abstract_Variables>
+<Invariant>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op=':'>
+<Id value='sas' typref='3089750310'/>
+<Id value='NIVEAU' typref='27338931'/>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Id value='pav' typref='403894148'/>
+<Id value='PORTE' typref='438023039'/>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Id value='pam' typref='403894148'/>
+<Id value='PORTE' typref='438023039'/>
+</Exp_Comparison>
+<Binary_Pred op='=&gt;'>
+<Exp_Comparison op='='>
+<Id value='pav' typref='403894148'/>
+<Id value='ouverte' typref='403894148'/>
+</Exp_Comparison>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op='='>
+<Id value='pam' typref='403894148'/>
+<Id value='fermee' typref='403894148'/>
+</Exp_Comparison>
+<Exp_Comparison op='='>
+<Id value='sas' typref='3089750310'/>
+<Id value='bas' typref='3089750310'/>
+</Exp_Comparison>
+</Nary_Pred>
+</Binary_Pred>
+<Binary_Pred op='=&gt;'>
+<Exp_Comparison op='='>
+<Id value='pam' typref='403894148'/>
+<Id value='ouverte' typref='403894148'/>
+</Exp_Comparison>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op='='>
+<Id value='pav' typref='403894148'/>
+<Id value='fermee' typref='403894148'/>
+</Exp_Comparison>
+<Exp_Comparison op='='>
+<Id value='sas' typref='3089750310'/>
+<Id value='haut' typref='3089750310'/>
+</Exp_Comparison>
+</Nary_Pred>
+</Binary_Pred>
+</Nary_Pred>
+</Invariant>
+<Initialisation>
+<Assignement_Sub>
+<Variables>
+<Id value='sas' typref='3089750310'/>
+<Id value='pav' typref='403894148'/>
+<Id value='pam' typref='403894148'/>
+</Variables>
+<Values>
+<Id value='haut' typref='3089750310'/>
+<Id value='fermee' typref='403894148'/>
+<Id value='fermee' typref='403894148'/>
+</Values>
+</Assignement_Sub>
+</Initialisation>
+<Operations>
+<Operation name='remplir'>
+<Precondition>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op='='>
+<Id value='pav' typref='403894148'/>
+<Id value='fermee' typref='403894148'/>
+</Exp_Comparison>
+<Exp_Comparison op='='>
+<Id value='pam' typref='403894148'/>
+<Id value='fermee' typref='403894148'/>
+</Exp_Comparison>
+</Nary_Pred>
+</Precondition>
+<Body>
+<Assignement_Sub>
+<Variables>
+<Id value='sas' typref='3089750310'/>
+</Variables>
+<Values>
+<Id value='haut' typref='3089750310'/>
+</Values>
+</Assignement_Sub>
+</Body>
+</Operation>
+<Operation name='vider'>
+<Precondition>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op='='>
+<Id value='pav' typref='403894148'/>
+<Id value='fermee' typref='403894148'/>
+</Exp_Comparison>
+<Exp_Comparison op='='>
+<Id value='pam' typref='403894148'/>
+<Id value='fermee' typref='403894148'/>
+</Exp_Comparison>
+</Nary_Pred>
+</Precondition>
+<Body>
+<Assignement_Sub>
+<Variables>
+<Id value='sas' typref='3089750310'/>
+</Variables>
+<Values>
+<Id value='bas' typref='3089750310'/>
+</Values>
+</Assignement_Sub>
+</Body>
+</Operation>
+<Operation name='ouvrir_amont'>
+<Precondition>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op='='>
+<Id value='pav' typref='403894148'/>
+<Id value='fermee' typref='403894148'/>
+</Exp_Comparison>
+<Exp_Comparison op='='>
+<Id value='pam' typref='403894148'/>
+<Id value='fermee' typref='403894148'/>
+</Exp_Comparison>
+<Exp_Comparison op='='>
+<Id value='sas' typref='3089750310'/>
+<Id value='haut' typref='3089750310'/>
+</Exp_Comparison>
+</Nary_Pred>
+</Precondition>
+<Body>
+<Assignement_Sub>
+<Variables>
+<Id value='pam' typref='403894148'/>
+</Variables>
+<Values>
+<Id value='ouverte' typref='403894148'/>
+</Values>
+</Assignement_Sub>
+</Body>
+</Operation>
+<Operation name='fermer_amont'>
+<Precondition>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op='='>
+<Id value='pav' typref='403894148'/>
+<Id value='fermee' typref='403894148'/>
+</Exp_Comparison>
+<Exp_Comparison op='='>
+<Id value='pam' typref='403894148'/>
+<Id value='ouverte' typref='403894148'/>
+</Exp_Comparison>
+<Exp_Comparison op='='>
+<Id value='sas' typref='3089750310'/>
+<Id value='haut' typref='3089750310'/>
+</Exp_Comparison>
+</Nary_Pred>
+</Precondition>
+<Body>
+<Assignement_Sub>
+<Variables>
+<Id value='pam' typref='403894148'/>
+</Variables>
+<Values>
+<Id value='fermee' typref='403894148'/>
+</Values>
+</Assignement_Sub>
+</Body>
+</Operation>
+<Operation name='ouvrir_aval'>
+<Precondition>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op='='>
+<Id value='pav' typref='403894148'/>
+<Id value='fermee' typref='403894148'/>
+</Exp_Comparison>
+<Exp_Comparison op='='>
+<Id value='pam' typref='403894148'/>
+<Id value='fermee' typref='403894148'/>
+</Exp_Comparison>
+<Exp_Comparison op='='>
+<Id value='sas' typref='3089750310'/>
+<Id value='bas' typref='3089750310'/>
+</Exp_Comparison>
+</Nary_Pred>
+</Precondition>
+<Body>
+<Assignement_Sub>
+<Variables>
+<Id value='pav' typref='403894148'/>
+</Variables>
+<Values>
+<Id value='ouverte' typref='403894148'/>
+</Values>
+</Assignement_Sub>
+</Body>
+</Operation>
+<Operation name='fermer_aval'>
+<Precondition>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op='='>
+<Id value='pav' typref='403894148'/>
+<Id value='ouverte' typref='403894148'/>
+</Exp_Comparison>
+<Exp_Comparison op='='>
+<Id value='pam' typref='403894148'/>
+<Id value='fermee' typref='403894148'/>
+</Exp_Comparison>
+<Exp_Comparison op='='>
+<Id value='sas' typref='3089750310'/>
+<Id value='bas' typref='3089750310'/>
+</Exp_Comparison>
+</Nary_Pred>
+</Precondition>
+<Body>
+<Assignement_Sub>
+<Variables>
+<Id value='pav' typref='403894148'/>
+</Variables>
+<Values>
+<Id value='fermee' typref='403894148'/>
+</Values>
+</Assignement_Sub>
+</Body>
+</Operation>
+</Operations>
+<TypeInfos>
+<Type id='27338931'>
+<Unary_Exp op='POW'>
+<Id value='NIVEAU'/>
+</Unary_Exp>
+</Type>
+<Type id='3089750310'>
+<Id value='NIVEAU'/>
+</Type>
+<Type id='438023039'>
+<Unary_Exp op='POW'>
+<Id value='PORTE'/>
+</Unary_Exp>
+</Type>
+<Type id='403894148'>
+<Id value='PORTE'/>
+</Type>
+</TypeInfos>
+
+</Machine>

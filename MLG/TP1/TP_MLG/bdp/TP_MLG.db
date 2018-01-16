@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<db_xml>
+    <atelierb version="3_7_ubuntu-cvs" />
+    <project decomp_dir="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/expand_src" old_decomp_dir="/home/pbernarbe/MLG/TP1/TP_MLG/bdp/src">
+        <!-- Definition directory list -->
+        <definition_dir path="/home/pbernarbe/MLG/TP1/TP_MLG" />
+        <!-- Component file list -->
+        <component_file path="/home/pbernarbe/MLG/TP1/TP_MLG" name="ASCENSEUR" suffix="mch" user="pbernarbe">
+            <component name="ASCENSEUR" type="specification" />
+        </component_file>
+        <component_file path="/home/pbernarbe/MLG/TP1/TP_MLG" name="ATTENTE" suffix="mch" user="pbernarbe">
+            <component name="ATTENTE" type="specification" />
+        </component_file>
+        <component_file path="/home/pbernarbe/MLG/TP1/TP_MLG" name="ATTENTE_R1" suffix="ref" user="pbernarbe">
+            <component name="ATTENTE_R1" type="refinement" />
+        </component_file>
+        <component_file path="/home/pbernarbe/MLG/TP1/TP_MLG" name="ECLUSE" suffix="mch" user="pbernarbe">
+            <component name="ECLUSE" type="specification" />
+        </component_file>
+        <component_file path="/home/pbernarbe/MLG/TP1/TP_MLG" name="ExempleTD" suffix="mch" user="pbernarbe">
+            <component name="ExempleTD" type="specification" />
+        </component_file>
+        <component_file path="/home/pbernarbe/MLG/TP1/TP_MLG" name="Genealogie" suffix="mch" user="pbernarbe">
+            <component name="Genealogie" type="specification" />
+        </component_file>
+    </project>
+</db_xml>

@@ -1,0 +1,22 @@
+JavaSript taper :
+
+	PATH=$PATH:/home/pbernarbe/Téléchargements/tmp/node-v6.11.0-linux-x64/bin/
+
+	Ce deplacer dans le repertoire du code .js
+	importer les modules necessaire avec la comande 
+
+	npm install lodash
+
+	pour executer un programme utiliser la commande :
+	node programme.js
+
+Clojure 
+	aller dans Téléchargement et lancer lightable
+	ensuite ouvrir le programme.clj
+
+Java
+	utiliser eclipse
+	choisir le bon workspace
+
+Python
+	python3 programme.py

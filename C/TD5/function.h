@@ -1,0 +1,8 @@
+#include "modelStruct.h"
+#ifndef IDENTIFIANT_UNIQUE
+#define IDENTIFIANT_UNIQUE
+
+int hauteurArbre(Arbre N);
+int equilibreArbre(Arbre N);
+
+#endif

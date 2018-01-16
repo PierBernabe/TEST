@@ -1,0 +1,35 @@
+THEORY BalanceX IS
+ExempleTD,7,0,0,0,0,0,0;
+Initialisation,3,0,0,0,0,0,0;
+incr,4,0,0,0,0,0,0
+END
+&
+THEORY ProofState IS
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved
+END
+&
+THEORY MethodList IS
+?;
+?;
+?;
+?;
+?;
+?;
+?
+END
+&
+THEORY PassList IS
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),?
+END

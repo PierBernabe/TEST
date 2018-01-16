@@ -1,0 +1,49 @@
+THEORY ProofList IS
+_f(1) & _f(2) & _f(8) & _f(9) & naitre.8,(_f(10) & _f(3) & _f(6) => _f(21));
+_f(1) & _f(2) & _f(8) & _f(9) & naitre.7,(_f(10) & _f(3) & _f(4) => _f(20));
+_f(1) & _f(2) & _f(8) & _f(9) & naitre.6,(_f(10) & _f(3) & _f(13) => _f(19));
+_f(1) & _f(2) & _f(8) & _f(9) & naitre.5,(_f(10) & _f(3) & _f(17) => _f(18));
+_f(1) & _f(2) & _f(8) & _f(9) & naitre.4,(_f(10) & _f(3) & _f(6) => _f(16));
+_f(1) & _f(2) & _f(8) & _f(9) & naitre.3,(_f(10) & _f(3) & _f(4) => _f(15));
+_f(1) & _f(2) & _f(8) & _f(9) & naitre.2,(_f(10) & _f(3) & _f(13) => _f(14));
+_f(1) & _f(2) & _f(8) & _f(9) & naitre.1,(_f(10) & _f(3) & _f(11) => _f(12));
+_f(1) & _f(2) & Initialisation.2,(_f(3) & _f(6) => _f(7));
+_f(1) & _f(2) & Initialisation.1,(_f(3) & _f(4) => _f(5))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+PERSONNES: FIN(INTEGER) & not(PERSONNES = {}) & H0 : POW( PERSONNES) & F0 : POW( PERSONNES) & ((((H0) /\ (F0))) = ({}));
+"Invariant is preserved";
+"Check invariant ((Pere) : (((((((Hommes) \/ (Femmes)) - H0) - F0)) --> (Hommes))))";
+(({}) : (((((((H0) \/ (F0)) - H0) - F0)) --> (H0))));
+"Check invariant ((Mere) : (((((((Hommes) \/ (Femmes)) - H0) - F0)) --> (Femmes))))";
+(({}) : (((((((H0) \/ (F0)) - H0) - F0)) --> (F0))));
+Hommes : POW( PERSONNES) & Femmes : POW( PERSONNES) & ((((Hommes) /\ (Femmes))) = ({})) & Pere : ((((Hommes) \/ (Femmes)) - H0) - F0) +-> Hommes & dom(Pere) = ((((Hommes) \/ (Femmes)) - H0) - F0) & ((Pere) : (((((((Hommes) \/ (Femmes)) - H0) - F0)) --> (Hommes)))) & Mere : ((((Hommes) \/ (Femmes)) - H0) - F0) +-> Femmes & dom(Mere) = ((((Hommes) \/ (Femmes)) - H0) - F0) & ((Mere) : (((((((Hommes) \/ (Femmes)) - H0) - F0)) --> (Femmes))));
+((pere) : (Hommes)) & ((mere) : (Femmes));
+((alien) : (((PERSONNES - Hommes) - Femmes)));
+"Check invariant Hommes : POW( PERSONNES)";
+((Hommes) \/ ({alien})) : POW( PERSONNES);
+"Check invariant ((((Hommes) /\ (Femmes))) = ({}))";
+((((((Hommes) \/ ({alien}))) /\ (Femmes))) = ({}));
+((((Pere) <+ ({((alien) |-> (pere))}))) : (((((((((Hommes) \/ ({alien}))) \/ (Femmes)) - H0) - F0)) --> (((Hommes) \/ ({alien}))))));
+((((Mere) <+ ({((alien) |-> (mere))}))) : (((((((((Hommes) \/ ({alien}))) \/ (Femmes)) - H0) - F0)) --> (Femmes))));
+"Check invariant Femmes : POW( PERSONNES)";
+((Femmes) \/ ({alien})) : POW( PERSONNES);
+((((Hommes) /\ (((Femmes) \/ ({alien}))))) = ({}));
+((((Pere) <+ ({((alien) |-> (pere))}))) : (((((((Hommes) \/ (((Femmes) \/ ({alien})))) - H0) - F0)) --> (Hommes))));
+((((Mere) <+ ({((alien) |-> (mere))}))) : (((((((Hommes) \/ (((Femmes) \/ ({alien})))) - H0) - F0)) --> (((Femmes) \/ ({alien}))))));
+PERSONNES: FIN(INTEGER) & not(PERSONNES = {});
+F0 : POW( PERSONNES);
+H0 : POW( PERSONNES);
+Pere : ((((Hommes) \/ (Femmes)) - H0) - F0) +-> Hommes;
+dom(Pere) = ((((Hommes) \/ (Femmes)) - H0) - F0);
+((Pere) : (((((((Hommes) \/ (Femmes)) - H0) - F0)) --> (Hommes))));
+((((Hommes) /\ (Femmes))) = ({}));
+Femmes : POW( PERSONNES);
+Hommes : POW( PERSONNES);
+((pere) : (Hommes))
+END
+&
+THEORY EnumerateX
+END

@@ -1,0 +1,28 @@
+var tab = new Array(4,5,8,7,6,2,8,7,9,2)
+
+for(i=0;i<tab.length;i++)
+    console.log("valeur ",i," -> ",tab[i])
+
+tmp.forEach(function(element) {
+  console.log(element);
+
+  _ = require('lodash');
+  _.each(tab, function(elem) { console.log("->",elem);})
+
+
+
+
+function test(f) {
+  for (var i = 0; i < 20; i++) {
+    console.log("coucou", i);
+  }
+  f("termine");
+}
+
+console.log("Debut");
+
+test(function(message) {
+  console.log("->", message);
+});
+
+console.log("Fin")

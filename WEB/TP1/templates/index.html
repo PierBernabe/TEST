@@ -1,0 +1,49 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Posts</title>
+</head>
+<body>
+
+{% for post in posts %}
+<p>{{ post }}</p>
+{% endfor %}
+
+<p>
+  <form action="/post" method="POST">
+    <input type="text" name="post">
+    <input type="submit" value="Boom !">
+  </form>
+</p>
+
+</body>
+</html>
+!-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sessions</title>
+</head>
+<body>
+
+<p>{{ message }}</p>
+
+{% if logged %}
+<p>
+  <a href="/logout">[logout]</a>
+</p>
+{% else %}
+<form action="/login" method="POST">
+  <p>
+    ... mais qui êtes vous ?
+    <input type="text" name="name">
+    <input type="submit" value="Voilà !">
+  </p>
+</form>
+{% endif %}
+
+</body>
+</html>

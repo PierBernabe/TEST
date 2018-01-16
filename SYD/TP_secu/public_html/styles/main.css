@@ -1,0 +1,61 @@
+body {
+  font:large Palatino, "Palatino Linotype", "Book Antiqua", Georgia;
+}
+
+h1 {
+  margin:30px;
+  font-size:30px;
+  color:#0066CC;
+  line-height:30px;
+}
+
+h2 {
+  margin:25px;
+  font-size:25px;
+  color:#0066CC;
+  line-height:25px;
+}
+
+table td {
+  padding-bottom:10px;
+}
+
+.msg {
+  font-size:20px;
+  font-size:30px;
+  font: italic bold Georgia, serif;
+}
+
+.err-msg {
+  color:#dd0000;
+  font-size:30px;
+  font: italic bold Georgia, serif;
+}
+
+form input {
+  padding:4px;
+  font:13px Georgia, "Times New Roman", Times, serif;
+  border:1px solid #999999;
+}
+
+form button {
+  background-color:#fff;
+  border:1px solid #bbb;
+  padding:2px;
+  color:#4e4e4e;
+  cursor:pointer;
+}
+
+form button:hover {
+  border-color:#2D3940;
+  color:#3e3e3e;
+}
+
+form input:focus {
+  border:1px solid #666;
+  background:#e3f1f1;
+}
+
+.btn {
+  width:60px;
+}

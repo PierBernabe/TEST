@@ -1,0 +1,187 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "utilSudoku.h"
+         
+     
+int lireSudoku(FILE *fich,int sudoku[9][9])
+{int i,j,res;
+ int val; 
+ for (i=0; i<9; i++) 
+   for (j=0; j<9; j++) 
+     {
+       res=fscanf(fich, "%d",&val);
+       if (res==EOF)
+         {
+           fprintf(stderr,"Fin de ficher atteinte: manque des coefficients\n");
+           exit(-1);
+         }
+       sudoku[i][j]=val;
+     }
+ return(0);
+}
+
+int ecrireSudoku(FILE *fich,int sudoku[9][9])
+{int i,j;
+ for (i=0; i<9; i++) 
+   {
+     for (j=0; j<9; j++) 
+       {
+         fprintf(fich, "%d ",sudoku[i][j]);
+       }
+     fprintf(fich, "\n");
+   }
+ return(0);
+}
+
+int verifLigne(int sudoku[9][9]){
+	int tmp[9],verifLigne,verifTotal=0,i,j,a;
+	for(i=0;i<9;i++){
+		verifLigne=0;
+		for(a=0;a<9;a++){tmp[a]=0;}
+			for(j=0;j<9;j++){
+				if(tmp[sudoku[i][j]-1]==0){
+					verifLigne++;
+					tmp[sudoku[i][j]-1]=1;				
+				}
+			}
+			if(verifLigne==9)verifTotal++;
+	}
+	if(verifTotal==9) return 1;
+	else return 0;
+}
+
+int verifCol(int sudoku[9][9]){
+	int tmp[9],verifCol,verifTotal=0,i,j,a;
+	for(j=0;j<9;j++){
+		verifCol=0;
+		for(a=0;a<9;a++){tmp[a]=0;}
+			for(i=0;i<9;i++){
+				if(tmp[sudoku[i][j]-1]==0){
+					verifCol++;
+					tmp[sudoku[i][j]-1]=1;				
+				}
+			}
+			if(verifCol==9)verifTotal++;
+	}
+	if(verifTotal==9) return 1;
+	else return 0;
+}
+
+int verifCas(int sudoku[9][9]){
+	int tmp[9],verifCas,verifTotal=0,I,J,i,j,a;
+	for(I=0;I<3;I++){
+	for(J=0;J<3;J++){
+		verifCas=0;
+		for(a=0;a<9;a++){tmp[a]=0;}
+			for(i=I*3;i<3+i*3;i++){
+			for(j=J*3;j<3+j*3;j++){
+				if(tmp[sudoku[i][j]-1]==0){
+					verifCas++;
+					tmp[sudoku[i][j]-1]=1;				
+				}
+			}}
+			if(verifCas==9)verifTotal++;
+	}}
+	if(verifTotal==9) return 1;
+	else return 0;
+}
+
+int sudokuValide(int sudoku[9][9]){
+	int a=verifLigne(sudoku);
+  	a+=verifCol(sudoku);
+  	a+=verifCol(sudoku);
+	if(a==3)return 1;
+	else return 0;
+}
+
+void interdireValeur(int val,int lin,int col,int sudoku2[9][9][9]){
+	int i,j;	
+	for(i=0;i<9;i++){
+		sudoku2[i][col][val-1]=1;
+		sudoku2[lin][i][val-1]=1;	
+	}
+	
+	
+	if(lin<3)lin=0;
+	else if(lin>5)lin=6;
+	else lin=3;
+	if(col<3)col=0;
+	else if(col>5)col=6;
+	else col=3;
+
+	for(i=lin;i<lin+3;i++){
+	for(j=col;j<col+3;j++){	
+		sudoku2[i][j][val-1]=1;
+	}}
+}
+
+void initInterdiction(int sudoku[9][9],int sudoku2[9][9][9]){
+	int i,j,k;
+	for(i=0;i<9;i++){
+	for(j=0;j<9;j++){
+	for(k=0;k<9;k++){
+		sudoku2[i][j][k]=0;
+	}}}	
+	for(i=0;i<9;i++){
+	for(j=0;j<9;j++){
+		if(sudoku[i][j]!=0){
+			interdireValeur(sudoku[i][j],i,j,sudoku2);
+		}
+	}}
+}
+
+void sudokuFacil(int sudoku[9][9]){
+	int sudoku2[9][9][9],a=1,b,i,j,k,tmp=0;
+	initInterdiction(sudoku,sudoku2);
+	//afficheInterdiction(sudoku2);
+	while(a!=0){
+		a=0;
+		for(i=0;i<9;i++){
+			for(j=0;j<9;j++){
+				b=0;
+				for(k=0;k<9;k++){
+					if(sudoku2[i][j][k]==0){tmp=(k+1);b++;}
+				}
+				if(b==1 && sudoku[i][j]==0){
+					sudoku[i][j]=tmp;
+					//printf("\t%d %d -> %d",i,j,tmp);
+					interdireValeur(tmp,i,j,sudoku2);
+					a++;
+				}
+			}
+		}
+	}
+	afficheSudoku(sudoku);	
+}
+
+void afficheInterdiction(int sudoku2[9][9][9]){
+	int i,j,k;
+	for(i=0;i<9;i++){
+	for(j=0;j<9;j++){
+	for(k=0;k<9;k++){
+		printf(" %d ",sudoku2[i][j][k]);
+	}
+	printf("\n");}
+	printf("\n");}
+}
+
+void afficheSudoku(int sudoku[9][9]){
+	int i,j;
+	for(i=0;i<9;i++){
+		for(j=0;j<9;j++){
+			printf(" %d ",sudoku[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+
+
+
+
+
+
+
+
+

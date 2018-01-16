@@ -1,0 +1,76 @@
+THEORY ProofList IS
+_f(1) & _f(2) & _f(14) & _f(15) & _f(46) & WellDefinedness_traiter.1,(_f(47) => _f(48));
+_f(1) & _f(2) & _f(14) & _f(15) & _f(27) & traiter.8,(_f(3) & _f(24) => _f(35));
+_f(1) & _f(2) & _f(14) & _f(15) & _f(27) & traiter.7,(_f(3) & _f(12) => _f(34));
+_f(1) & _f(2) & _f(14) & _f(15) & _f(27) & traiter.6,(_f(3) & _f(10) => _f(33));
+_f(1) & _f(2) & _f(14) & _f(15) & _f(27) & traiter.5,(_f(3) & _f(8) => _f(32));
+_f(1) & _f(2) & _f(14) & _f(15) & _f(27) & traiter.4,(_f(3) & _f(6) => _f(31));
+_f(1) & _f(2) & _f(14) & _f(15) & _f(27) & traiter.3,(_f(3) & _f(4) => _f(30));
+_f(1) & _f(2) & _f(14) & _f(15) & _f(27) & traiter.2,(_f(29));
+_f(1) & _f(2) & _f(14) & _f(15) & _f(27) & traiter.1,(_f(28));
+_f(1) & _f(2) & _f(14) & _f(15) & _f(17) & ajouter.6,(_f(3) & _f(24) => _f(25));
+_f(1) & _f(2) & _f(14) & _f(15) & _f(17) & ajouter.5,(_f(3) & _f(12) => _f(23));
+_f(1) & _f(2) & _f(14) & _f(15) & _f(17) & ajouter.4,(_f(3) & _f(10) => _f(22));
+_f(1) & _f(2) & _f(14) & _f(15) & _f(17) & ajouter.3,(_f(3) & _f(8) => _f(21));
+_f(1) & _f(2) & _f(14) & _f(15) & _f(17) & ajouter.2,(_f(3) & _f(19) => _f(20));
+_f(1) & _f(2) & _f(14) & _f(15) & _f(17) & ajouter.1,(_f(3) & _f(4) => _f(18));
+_f(1) & _f(2) & Initialisation.5,(_f(3) & _f(12) => _f(13));
+_f(1) & _f(2) & Initialisation.4,(_f(3) & _f(10) => _f(11));
+_f(1) & _f(2) & Initialisation.3,(_f(3) & _f(8) => _f(9));
+_f(1) & _f(2) & Initialisation.2,(_f(3) & _f(6) => _f(7));
+_f(1) & _f(2) & Initialisation.1,(_f(3) & _f(4) => _f(5))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+VAL: FIN(INTEGER) & not(VAL = {}) & ((nb_max) : (((1) .. (2147483647))));
+"Refinement is correct";
+"Check invariant ((file$1) : (((NATURAL) +-> (VAL))))";
+(({}) : (((NATURAL) +-> (VAL))));
+"Check invariant ((b1$1) : (NATURAL))";
+((1) : (NATURAL));
+"Check invariant ((nb_elem) = ((b2$1 - b1$1)))";
+((0) = ((1 - 1)));
+"Check invariant ((ran(file$1)) = (attente))";
+((ran({})) = ({}));
+"Check invariant ((b1$1) : (dom(file$1)))";
+((1) : (dom({})));
+attente : POW( VAL) & ((nb_elem) : (NAT)) & (nb_elem <= nb_max) & ((attente) : (FIN(attente))) & ((nb_elem) = (card(attente)));
+((file$1) : (((NATURAL) +-> (VAL)))) & b1$1 : INTEGER & 0 <= b1$1 & ((b1$1) : (NATURAL)) & b2$1 : INTEGER & 0 <= b2$1 & ((b2$1) : (NATURAL)) & ((nb_elem) = ((b2$1 - b1$1))) & ((ran(file$1)) = (attente)) & ((b1$1) : (dom(file$1))) & ((b2$1) : (dom(file$1)));
+((nb) = (nb$1));
+((vv) : (VAL)) & not(vv : attente) & not(nb_elem = nb_max);
+((((file$1) <+ ({((b2$1) |-> (vv))}))) : (((NATURAL) +-> (VAL))));
+"Check invariant ((b2$1) : (NATURAL))";
+(((b2$1 + 1)) : (NATURAL));
+(((nb_elem + 1)) = (((b2$1 + 1) - b1$1)));
+((ran(((file$1) <+ ({((b2$1) |-> (vv))})))) = (((attente) \/ ({vv}))));
+((b1$1) : (dom(((file$1) <+ ({((b2$1) |-> (vv))})))));
+"Check invariant ((b2$1) : (dom(file$1)))";
+(((b2$1 + 1)) : (dom(((file$1) <+ ({((b2$1) |-> (vv))})))));
+not(attente = {});
+not(attente = {}) & ((vv) = (vv$1));
+(((file$1 )(b1$1)) : (VAL));
+(((file$1 )(b1$1)) : (attente));
+(((file$1 - {((b1$1) |-> ((file$1 )(b1$1)))})) : (((NATURAL) +-> (VAL))));
+(((b1$1 + 1)) : (NATURAL));
+(((nb_elem - 1)) = ((b2$1 - (b1$1 + 1))));
+((ran((file$1 - {((b1$1) |-> ((file$1 )(b1$1)))}))) = ((attente - {(file$1 )(b1$1)})));
+(((b1$1 + 1)) : (dom((file$1 - {((b1$1) |-> ((file$1 )(b1$1)))}))));
+((b2$1) : (dom((file$1 - {((b1$1) |-> ((file$1 )(b1$1)))}))));
+((b1$1) : (dom(file$1)));
+((ran(file$1)) = (attente));
+((nb_elem) = ((b2$1 - b1$1)));
+b2$1 : INTEGER;
+0 <= b2$1;
+((b2$1) : (NATURAL));
+b1$1 : INTEGER;
+0 <= b1$1;
+((b1$1) : (NATURAL));
+((file$1) : (((NATURAL) +-> (VAL))));
+not(attente = {}) & ((b1$1) : (dom(file$1)));
+"Well definedness";
+((file$1) : (((dom(file$1)) +-> (ran(file$1)))))
+END
+&
+THEORY EnumerateX
+END

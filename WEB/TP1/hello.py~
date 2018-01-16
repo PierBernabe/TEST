@@ -1,0 +1,59 @@
+from flask import Flask, request, url_for, redirect,abort #lister les imports 
+app = Flask(__name__)
+
+@app.route('/')       
+def hey():
+  app.logger.debug('Lancement de l\'application')
+  app.logger.warning('/')
+  return 'Hey !'
+
+@app.route('/excellence')   
+def excellence():
+  app.logger.error('/excellence')
+  return 'Stanford'
+
+@app.route('/user/<name>')
+def user(name):
+  return 'User: %s' % name
+
+@app.route('/profile/<int:uid>/<action>')#int: indique que uid doit forcement etre unentier
+def profile(uid, action):
+  return 'UID: %d / Action: %s' % (uid, action)
+
+@app.route('/plop', methods=['GET', 'POST'])
+def plop():
+  if request.method == 'GET':       
+    return "Ceci fut un HTTP GET"
+  else:
+    return "Ceci fut un HTTP POST"
+
+@app.route('/vortex')
+def vortex():
+  return redirect(url_for('excellence', vortex=1))
+
+@app.route('/fail')
+def fail():
+  abort(500)#retour le code de statut 500
+
+@app.errorhandler(500)#permet de personnaliser la gestion du code 500
+def internal_error(error):
+  return "Wooops!"
+
+@app.errorhandler(404)#permet de personnaliser la gestion du code 500
+def internal_error(error):
+  return "Noob "
+
+@app.route('/show-routes')
+def show_routes():
+  routes = ''
+  with app.test_request_context():
+    routes = routes + url_for('excellence') + '\n'#appel la fonction excellence
+    routes = routes + url_for('plop') + '\n'
+    routes = routes + url_for('excellence', aeres=True) + '\n'
+    routes = routes + url_for('profile', uid=1234, action='save') + '\n'
+    routes = routes + url_for('vortex') + '\n'
+    routes = routes + url_for('fail') + '\n'
+  return routes
+
+if __name__ == '__main__':
+  app.run(debug=True)

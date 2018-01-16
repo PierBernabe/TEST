@@ -1,0 +1,5 @@
+myModule = angular.module('BlankApp', [])
+
+myModule.controller('MonController', ['$scope',  function($scope) {
+  $scope.coucou = function() { console.log("Hello"); $scope.toto="text"}
+}]);

@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include<unistd.h>
+#include<signal.h>
+int pid,etat;
+
+//--------------------------------------
+void fct(){}
+//--------------------------------------
+//fct pour pere
+void MarcheArret(){
+	if(etat==0){
+		kill(pid,SIGCONT);
+	}
+	else kill(pid,SIGSTOP);
+	signal(SIGTSTP,MarcheArret);
+	pause();
+}
+
+void reset(){
+	kill(pid,SIGKILL);
+	signal(SIGINT,reset);
+	pause();
+}
+
+void finProg(){
+	kill(pid,SIGUSR1);
+	pause();
+}
+//--------------------------------------
+//fct pour fils
+void marche(){
+	etat=1;
+	signal(SIGCONT,marche);
+	pause();
+}
+void arret(){
+	etat=0;
+	signal(SIGSTOP,arret);
+	pause();
+}
+void reset2(){
+	arret();
+	marche();
+	signal(SIGKILL,MarcheArret);
+	pause();
+}
+//--------------------------------------
+int main(){
+	etat=0;
+	
+	if((pid=fork())==0){
+	//fils
+		int i=0;	
+		signal(SIGCONT,marche);
+		signal(SIGSTOP,arret);
+		signal(SIGKILL,reset2);
+		for(;;){
+			if(etat==1){
+				i++;
+				signal(SIGALRM,fct);
+				alarm(10);
+				pause();
+				printf("\n%d",i);
+			}
+		}
+	}
+	else{
+	//pere
+		signal(SIGTSTP,MarcheArret);
+		signal(SIGINT,reset);
+		signal(SIGQUIT,finProg);
+		pause();
+	}
+	return 0;
+}

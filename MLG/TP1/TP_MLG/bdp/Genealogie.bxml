@@ -1,0 +1,250 @@
+<Machine name='Genealogie' type='abstraction'>
+<Sets>
+<Set>
+<Id value='PERSONNES' typref='3899599010'/>
+</Set>
+</Sets>
+<Concrete_Constants>
+<Id value='H0' typref='3899599010'/>
+<Id value='F0' typref='3899599010'/>
+</Concrete_Constants>
+<Abstract_Variables>
+<Id value='Hommes' typref='3899599010'/>
+<Id value='Femmes' typref='3899599010'/>
+<Id value='Pere' typref='50270050'/>
+<Id value='Mere' typref='50270050'/>
+</Abstract_Variables>
+<Properties>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op='&lt;:'>
+<Id value='H0' typref='3899599010'/>
+<Id value='PERSONNES' typref='3899599010'/>
+</Exp_Comparison>
+<Exp_Comparison op='&lt;:'>
+<Id value='F0' typref='3899599010'/>
+<Id value='PERSONNES' typref='3899599010'/>
+</Exp_Comparison>
+<Exp_Comparison op='='>
+<Binary_Exp op='/\' typref='3899599010'>
+<Id value='H0' typref='3899599010'/>
+<Id value='F0' typref='3899599010'/>
+</Binary_Exp>
+<EmptySet typref='3817003670'/>
+</Exp_Comparison>
+</Nary_Pred>
+</Properties>
+<Invariant>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op='&lt;:'>
+<Id value='Hommes' typref='3899599010'/>
+<Id value='PERSONNES' typref='3899599010'/>
+</Exp_Comparison>
+<Exp_Comparison op='&lt;:'>
+<Id value='Femmes' typref='3899599010'/>
+<Id value='PERSONNES' typref='3899599010'/>
+</Exp_Comparison>
+<Exp_Comparison op='='>
+<Binary_Exp op='/\' typref='3899599010'>
+<Id value='Hommes' typref='3899599010'/>
+<Id value='Femmes' typref='3899599010'/>
+</Binary_Exp>
+<EmptySet typref='3817003670'/>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Id value='Pere' typref='50270050'/>
+<Binary_Exp op='--&gt;' typref='2044259617'>
+<Binary_Exp op='-' typref='3899599010'>
+<Binary_Exp op='-' typref='3899599010'>
+<Binary_Exp op='\/' typref='3899599010'>
+<Id value='Hommes' typref='3899599010'/>
+<Id value='Femmes' typref='3899599010'/>
+</Binary_Exp>
+<Id value='H0' typref='3899599010'/>
+</Binary_Exp>
+<Id value='F0' typref='3899599010'/>
+</Binary_Exp>
+<Id value='Hommes' typref='3899599010'/>
+</Binary_Exp>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Id value='Mere' typref='50270050'/>
+<Binary_Exp op='--&gt;' typref='2044259617'>
+<Binary_Exp op='-' typref='3899599010'>
+<Binary_Exp op='-' typref='3899599010'>
+<Binary_Exp op='\/' typref='3899599010'>
+<Id value='Hommes' typref='3899599010'/>
+<Id value='Femmes' typref='3899599010'/>
+</Binary_Exp>
+<Id value='H0' typref='3899599010'/>
+</Binary_Exp>
+<Id value='F0' typref='3899599010'/>
+</Binary_Exp>
+<Id value='Femmes' typref='3899599010'/>
+</Binary_Exp>
+</Exp_Comparison>
+</Nary_Pred>
+</Invariant>
+<Initialisation>
+<Nary_Sub op='||'>
+<Assignement_Sub>
+<Variables>
+<Id value='Hommes' typref='3899599010'/>
+</Variables>
+<Values>
+<Id value='H0' typref='3899599010'/>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Variables>
+<Id value='Femmes' typref='3899599010'/>
+</Variables>
+<Values>
+<Id value='F0' typref='3899599010'/>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Variables>
+<Id value='Pere' typref='50270050'/>
+</Variables>
+<Values>
+<EmptySet typref='3817003670'/>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Variables>
+<Id value='Mere' typref='50270050'/>
+</Variables>
+<Values>
+<EmptySet typref='3817003670'/>
+</Values>
+</Assignement_Sub>
+</Nary_Sub>
+</Initialisation>
+<Operations>
+<Operation name='naitre'>
+<Input_Parameters>
+<Id value='pere' typref='1455285153'/>
+<Id value='mere' typref='1455285153'/>
+</Input_Parameters>
+<Precondition>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op=':'>
+<Id value='pere' typref='1455285153'/>
+<Id value='Hommes' typref='3899599010'/>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Id value='mere' typref='1455285153'/>
+<Id value='Femmes' typref='3899599010'/>
+</Exp_Comparison>
+</Nary_Pred>
+</Precondition>
+<Body>
+<ANY_Sub>
+<Variables>
+<Id value='alien' typref='1455285153'/>
+</Variables>
+<Pred>
+<Exp_Comparison op=':'>
+<Id value='alien' typref='1455285153'/>
+<Binary_Exp op='-' typref='3899599010'>
+<Binary_Exp op='-' typref='3899599010'>
+<Id value='PERSONNES' typref='3899599010'/>
+<Id value='Hommes' typref='3899599010'/>
+</Binary_Exp>
+<Id value='Femmes' typref='3899599010'/>
+</Binary_Exp>
+</Exp_Comparison>
+</Pred>
+<Then>
+<Nary_Sub op='||'>
+<Assignement_Sub>
+<Variables>
+<Binary_Exp op='(' typref='1455285153'>
+<Id value='Pere' typref='50270050'/>
+<Id value='alien' typref='1455285153'/>
+</Binary_Exp>
+</Variables>
+<Values>
+<Id value='pere' typref='1455285153'/>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Variables>
+<Binary_Exp op='(' typref='1455285153'>
+<Id value='Mere' typref='50270050'/>
+<Id value='alien' typref='1455285153'/>
+</Binary_Exp>
+</Variables>
+<Values>
+<Id value='mere' typref='1455285153'/>
+</Values>
+</Assignement_Sub>
+<Nary_Sub op='CHOICE'>
+<Assignement_Sub>
+<Variables>
+<Id value='Hommes' typref='3899599010'/>
+</Variables>
+<Values>
+<Binary_Exp op='\/' typref='3899599010'>
+<Id value='Hommes' typref='3899599010'/>
+<Nary_Exp op='{' typref='3899599010'>
+<Id value='alien' typref='1455285153'/>
+</Nary_Exp>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Variables>
+<Id value='Femmes' typref='3899599010'/>
+</Variables>
+<Values>
+<Binary_Exp op='\/' typref='3899599010'>
+<Id value='Femmes' typref='3899599010'/>
+<Nary_Exp op='{' typref='3899599010'>
+<Id value='alien' typref='1455285153'/>
+</Nary_Exp>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+</Nary_Sub>
+</Nary_Sub>
+</Then>
+</ANY_Sub>
+</Body>
+</Operation>
+</Operations>
+<TypeInfos>
+<Type id='3899599010'>
+<Unary_Exp op='POW'>
+<Id value='PERSONNES'/>
+</Unary_Exp>
+</Type>
+<Type id='50270050'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='PERSONNES'/>
+<Id value='PERSONNES'/>
+</Binary_Exp>
+</Unary_Exp>
+</Type>
+<Type id='3817003670'>
+<Unary_Exp op='POW'>
+<Generic_Type/>
+</Unary_Exp>
+</Type>
+<Type id='2044259617'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='PERSONNES'/>
+<Id value='PERSONNES'/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+<Type id='1455285153'>
+<Id value='PERSONNES'/>
+</Type>
+</TypeInfos>
+
+</Machine>

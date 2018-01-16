@@ -1,0 +1,59 @@
+THEORY ProofList IS
+_f(1) & _f(2) & _f(6) & _f(24) & fermer_aval.3,(_f(9) & _f(4) => _f(23));
+_f(1) & _f(2) & _f(6) & _f(24) & fermer_aval.2,(_f(4) & _f(12) => _f(13));
+_f(1) & _f(2) & _f(6) & _f(24) & fermer_aval.1,(_f(4) & _f(17) => _f(18));
+_f(1) & _f(2) & _f(6) & _f(22) & ouvrir_aval.4,(_f(9) & _f(4) => _f(23));
+_f(1) & _f(2) & _f(6) & _f(22) & ouvrir_aval.3,(_f(9) & _f(4) => _f(19));
+_f(1) & _f(2) & _f(6) & _f(22) & ouvrir_aval.2,(_f(4) & _f(12) => _f(13));
+_f(1) & _f(2) & _f(6) & _f(22) & ouvrir_aval.1,(_f(4) & _f(17) => _f(18));
+_f(1) & _f(2) & _f(6) & _f(21) & fermer_amont.3,(_f(8) & _f(4) => _f(20));
+_f(1) & _f(2) & _f(6) & _f(21) & fermer_amont.2,(_f(4) & _f(10) => _f(11));
+_f(1) & _f(2) & _f(6) & _f(21) & fermer_amont.1,(_f(4) & _f(17) => _f(18));
+_f(1) & _f(2) & _f(6) & _f(15) & ouvrir_amont.4,(_f(8) & _f(4) => _f(20));
+_f(1) & _f(2) & _f(6) & _f(15) & ouvrir_amont.3,(_f(8) & _f(4) => _f(19));
+_f(1) & _f(2) & _f(6) & _f(15) & ouvrir_amont.2,(_f(4) & _f(10) => _f(11));
+_f(1) & _f(2) & _f(6) & _f(15) & ouvrir_amont.1,(_f(4) & _f(17) => _f(18));
+_f(1) & _f(2) & _f(6) & _f(7) & vider.3,(_f(9) & _f(4) => _f(14));
+_f(1) & _f(2) & _f(6) & _f(7) & vider.2,(_f(4) & _f(12) => _f(13));
+_f(1) & _f(2) & _f(6) & _f(7) & vider.1,(_f(4) & _f(10) => _f(11));
+_f(1) & _f(2) & _f(6) & _f(7) & remplir.3,(_f(8) & _f(4) => _f(5));
+_f(1) & _f(2) & _f(6) & _f(7) & remplir.2,(_f(4) & _f(12) => _f(13));
+_f(1) & _f(2) & _f(6) & _f(7) & remplir.1,(_f(4) & _f(10) => _f(11));
+_f(1) & _f(2) & Initialisation.1,(_f(3) & _f(4) => _f(5))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+((1..2)*{NIVEAU}): FIN(NATURAL*{NIVEAU}) & not(((1..2)*{NIVEAU}) = {}) & ((1..2)*{PORTE}): FIN(NATURAL*{PORTE}) & not(((1..2)*{PORTE}) = {});
+(((2|->PORTE)) = ((1|->PORTE)));
+"Invariant is preserved";
+(((1|->NIVEAU)) = ((2|->NIVEAU)));
+((sas) : (NIVEAU)) & ((pav) : (PORTE)) & ((pam) : (PORTE)) & ((((pav) = (ouverte))) => (((pam) = (fermee)) & ((sas) = (bas)))) & ((((pam) = (ouverte))) => (((pav) = (fermee)) & ((sas) = (haut))));
+((pav) = ((2|->PORTE))) & ((pam) = ((2|->PORTE)));
+((pav) = ((1|->PORTE)));
+((pam) = ((1|->PORTE)));
+"Check invariant ((pav) : (PORTE))";
+((pav) : (((1..2)*{PORTE})));
+"Check invariant ((pam) : (PORTE))";
+((pam) : (((1..2)*{PORTE})));
+(((2|->NIVEAU)) = ((1|->NIVEAU)));
+((pav) = ((2|->PORTE))) & ((pam) = ((2|->PORTE))) & ((sas) = ((1|->NIVEAU)));
+(((1|->PORTE)) = ((1|->PORTE)));
+"Check invariant ((sas) : (NIVEAU))";
+((sas) : (((1..2)*{NIVEAU})));
+(((1|->PORTE)) = ((2|->PORTE)));
+((sas) = ((2|->NIVEAU)));
+((pav) = ((2|->PORTE))) & ((pam) = ((1|->PORTE))) & ((sas) = ((1|->NIVEAU)));
+((pav) = ((2|->PORTE))) & ((pam) = ((2|->PORTE))) & ((sas) = ((2|->NIVEAU)));
+((sas) = ((1|->NIVEAU)));
+((pav) = ((1|->PORTE))) & ((pam) = ((2|->PORTE))) & ((sas) = ((2|->NIVEAU)));
+((1..2)*{NIVEAU}): FIN(NATURAL*{NIVEAU}) & not(((1..2)*{NIVEAU}) = {});
+((pam) = ((2|->PORTE)));
+((pav) = ((2|->PORTE)));
+((((pav) = ((1|->PORTE)))) => (((pam) = ((2|->PORTE))) & ((sas) = ((2|->NIVEAU)))))
+END
+&
+THEORY EnumerateX IS
+NIVEAU == {haut,bas};
+PORTE == {ouverte,fermee}
+END

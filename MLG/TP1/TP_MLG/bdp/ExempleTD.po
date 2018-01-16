@@ -1,0 +1,43 @@
+THEORY ProofList IS
+_f(1) & _f(9) & reset.2,(_f(16) & _f(17) & _f(18) & _f(2) & _f(5) => _f(20));
+_f(1) & _f(9) & reset.1,(_f(16) & _f(17) & _f(18) & _f(2) & _f(3) => _f(19));
+_f(1) & _f(9) & incr.4,(_f(11) & _f(2) & _f(7) => _f(15));
+_f(1) & _f(9) & incr.3,(_f(11) & _f(2) & _f(5) => _f(14));
+_f(1) & _f(9) & incr.2,(_f(2) & _f(7) => _f(13));
+_f(1) & _f(9) & incr.1,(_f(2) & _f(3) => _f(12));
+_f(1) & Initialisation.3,(_f(2) & _f(7) => _f(8));
+_f(1) & Initialisation.2,(_f(2) & _f(5) => _f(6));
+_f(1) & Initialisation.1,(_f(2) & _f(3) => _f(4))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+"Invariant is preserved";
+"Check invariant ((xx) : (NATURAL))";
+((1) : (NATURAL));
+"Check invariant ((yy) : (NATURAL))";
+((0) : (NATURAL));
+"Check invariant (yy +1 <= xx)";
+(0 +1 <= 1);
+xx : INTEGER & 0 <= xx & ((xx) : (NATURAL)) & yy : INTEGER & 0 <= yy & ((yy) : (NATURAL)) & (yy +1 <= xx);
+((xx) = ((yy + 1)));
+not(((xx) = ((yy + 1))));
+(((xx + 1)) : (NATURAL));
+(yy +1 <= (xx + 1));
+(((yy + 1)) : (NATURAL));
+((yy + 1) +1 <= xx);
+((nx) : (NAT));
+((ny) : (NAT));
+(ny +1 <= nx);
+((nx) : (NATURAL));
+((ny) : (NATURAL));
+yy : INTEGER;
+0 <= yy;
+((yy) : (NATURAL));
+xx : INTEGER;
+0 <= xx;
+((xx) : (NATURAL))
+END
+&
+THEORY EnumerateX
+END

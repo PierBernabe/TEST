@@ -1,0 +1,3 @@
+flex adder.l
+bison -d adder.y
+gcc lex.yy.c adder.tab.c -o adder

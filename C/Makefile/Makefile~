@@ -1,0 +1,3 @@
+fonction: fonction.o test.o
+	gcc -o fonction fonction.o test.o -I.
+

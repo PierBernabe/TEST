@@ -1,0 +1,8 @@
+#include "modelStruct.h"
+#ifndef IDENTIFIANT_UNIQUE
+#define IDENTIFIANT_UNIQUE
+
+void hanoi(Tour T1,Tour T2,Tour T3,N);
+
+
+#endif

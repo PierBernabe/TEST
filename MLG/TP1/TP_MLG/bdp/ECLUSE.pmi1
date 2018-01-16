@@ -1,0 +1,46 @@
+THEORY BalanceX IS
+ECLUSE,9,0,0,1,0,0,0;
+Initialisation,1,0,0,1,0,0,0;
+fermer_amont,1,0,0,0,0,0,0;
+fermer_aval,1,0,0,0,0,0,0;
+ouvrir_amont,2,0,0,0,0,0,0;
+ouvrir_aval,2,0,0,0,0,0,0;
+remplir,1,0,0,0,0,0,0;
+vider,1,0,0,0,0,0,0
+END
+&
+THEORY ProofState IS
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Unproved;
+Proved(0)
+END
+&
+THEORY MethodList IS
+pr;
+pr;
+pr;
+pr;
+pr;
+pr;
+?;
+?;
+pr
+END
+&
+THEORY PassList IS
+Force(0),(?; 0);
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),?;
+Force(0),?
+END

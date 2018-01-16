@@ -1,0 +1,50 @@
+
+REFINEMENT 
+   ATTENTE_R1
+
+/*? b1 designe le premier element de la liste et b2  le premier
+    emplacement vide. ?*/
+
+REFINES 
+   ATTENTE 
+
+VARIABLES  
+   file, b1, b2           
+
+INVARIANT  
+   file : NATURAL +-> VAL
+   & b1 : NATURAL & b2 : NATURAL
+   /* proprietes du raffinement */
+   & b1<=b2
+   & b1..b2-1:dom(file)
+   
+   /* Invariant de liaison*/
+   & nb_elem = b2 - b1
+   & ran(file) = attente
+
+
+
+INITIALISATION 
+   file := {} || b1:=1 || b2:=1
+
+
+OPERATIONS  
+
+   nb <-- nb_attente =
+      BEGIN
+         nb := b2-b1
+      END;
+
+    ajouter(vv)  =
+      BEGIN 
+          file(b2):= vv || b2:=b2+1
+      END ;
+
+   vv <-- traiter  =
+      PRE
+         b1:dom(file)
+      THEN 
+         vv:=file(b1) || b1:=b1+1 || file:=file-{b1|->file(b1)}
+      END
+
+END
